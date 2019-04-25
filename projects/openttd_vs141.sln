@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openttd", "openttd_vs141.vcxproj", "{668328A0-B40E-4CDB-BD72-D0064424414A}"
 EndProject
@@ -65,6 +64,7 @@ Global
 		{2F31FD79-D1AC-43C4-89F3-B0D5E4E53E34}.Debug|x64.ActiveCfg = Debug|Win32
 		{2F31FD79-D1AC-43C4-89F3-B0D5E4E53E34}.Release|Win32.ActiveCfg = Debug|Win32
 		{2F31FD79-D1AC-43C4-89F3-B0D5E4E53E34}.Release|x64.ActiveCfg = Debug|Win32
+		{2F31FD79-D1AC-43C4-89F3-B0D5E4E53E34}.Release|x64.Build.0 = Debug|Win32
 		{0817F629-589E-4A3B-B81A-8647BC571E35}.Debug|Win32.ActiveCfg = Debug|Win32
 		{0817F629-589E-4A3B-B81A-8647BC571E35}.Debug|Win32.Build.0 = Debug|Win32
 		{0817F629-589E-4A3B-B81A-8647BC571E35}.Debug|x64.ActiveCfg = Debug|Win32
@@ -85,6 +85,7 @@ Global
 		{4712B013-437D-42CE-947F-DEBABA15261F}.Debug|x64.ActiveCfg = Debug|Win32
 		{4712B013-437D-42CE-947F-DEBABA15261F}.Release|Win32.ActiveCfg = Debug|Win32
 		{4712B013-437D-42CE-947F-DEBABA15261F}.Release|x64.ActiveCfg = Debug|Win32
+		{4712B013-437D-42CE-947F-DEBABA15261F}.Release|x64.Build.0 = Debug|Win32
 		{E12E77CA-C0F1-4ADA-943F-4929274249D3}.Debug|Win32.ActiveCfg = Debug|Win32
 		{E12E77CA-C0F1-4ADA-943F-4929274249D3}.Debug|Win32.Build.0 = Debug|Win32
 		{E12E77CA-C0F1-4ADA-943F-4929274249D3}.Debug|x64.ActiveCfg = Debug|Win32
@@ -96,6 +97,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {619269D0-92A2-4204-93F7-72FA1A87A2DD}
 	EndGlobalSection
 	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
 		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}

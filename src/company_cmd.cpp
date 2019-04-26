@@ -310,7 +310,7 @@ void GetNameOfOwner(Owner owner, TileIndex tile)
  * @pre if tile == 0 then the owner can't be OWNER_TOWN.
  * @return A succeeded command iff it's owned by the current company, else a failed command.
  */
-CommandCost CheckOwnership(Owner owner, TileIndex tile)
+CommandCost CheckOwnership(Owner owner, TileIndex tile) //TODO
 {
 	assert(owner < OWNER_END);
 	assert(owner != OWNER_TOWN || tile != 0);
@@ -328,7 +328,7 @@ CommandCost CheckOwnership(Owner owner, TileIndex tile)
  * @param tile the tile to check.
  * @return A succeeded command iff it's owned by the current company, else a failed command.
  */
-CommandCost CheckTileOwnership(TileIndex tile)
+CommandCost CheckTileOwnership(TileIndex tile) //TODO
 {
 	Owner owner = GetTileOwner(tile);
 

@@ -734,22 +734,14 @@ CommandCost CmdInsertOrder(TileIndex tile, DoCommandFlag flags, uint32 p1, uint3
 
 	Vehicle *v = Vehicle::GetIfValid(veh);
 	if (v == NULL || !v->IsPrimaryVehicle()) return CMD_ERROR;
-
-	CommandCost ret = CheckOwnership(v->owner);
-	if (ret.Failed()) return ret;
-
+	
 	/* Check if the inserted order is to the correct destination (owner, type),
 	 * and has the correct flags if any */
 	switch (new_order.GetType()) {
 		case OT_GOTO_STATION: {
 			const Station *st = Station::GetIfValid(new_order.GetDestination());
 			if (st == NULL) return CMD_ERROR;
-
-			if (st->owner != OWNER_NONE) {
-				CommandCost ret = CheckOwnership(st->owner);
-				if (ret.Failed()) return ret;
-			}
-
+			
 			if (!CanVehicleUseStation(v, st)) return_cmd_error(STR_ERROR_CAN_T_ADD_ORDER);
 			for (Vehicle *u = v->FirstShared(); u != NULL; u = u->NextShared()) {
 				if (!CanVehicleUseStation(u, st)) return_cmd_error(STR_ERROR_CAN_T_ADD_ORDER_SHARED);
@@ -841,17 +833,11 @@ CommandCost CmdInsertOrder(TileIndex tile, DoCommandFlag flags, uint32 p1, uint3
 				case VEH_TRAIN: {
 					if (!(wp->facilities & FACIL_TRAIN)) return_cmd_error(STR_ERROR_CAN_T_ADD_ORDER);
 
-					CommandCost ret = CheckOwnership(wp->owner);
-					if (ret.Failed()) return ret;
 					break;
 				}
 
 				case VEH_SHIP:
 					if (!(wp->facilities & FACIL_DOCK)) return_cmd_error(STR_ERROR_CAN_T_ADD_ORDER);
-					if (wp->owner != OWNER_NONE) {
-						CommandCost ret = CheckOwnership(wp->owner);
-						if (ret.Failed()) return ret;
-					}
 					break;
 			}
 

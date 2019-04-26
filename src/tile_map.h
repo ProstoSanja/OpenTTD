@@ -213,7 +213,7 @@ static inline void SetTileOwner(TileIndex tile, Owner owner)
  * @param owner The owner to check against
  * @return True if a tile belongs the the given owner
  */
-static inline bool IsTileOwner(TileIndex tile, Owner owner)
+static inline bool IsTileOwner(TileIndex tile, Owner owner) //TODO
 {
 	return GetTileOwner(tile) == owner;
 }

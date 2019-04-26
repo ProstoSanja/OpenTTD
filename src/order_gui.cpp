@@ -377,8 +377,7 @@ static Order GetOrderCmdFromTile(const Vehicle *v, TileIndex tile)
 
 	/* check rail waypoint */
 	if (IsRailWaypointTile(tile) &&
-			v->type == VEH_TRAIN &&
-			IsTileOwner(tile, _local_company)) {
+			v->type == VEH_TRAIN) {
 		order.MakeGoToWaypoint(GetStationIndex(tile));
 		if (_settings_client.gui.new_nonstop != _ctrl_pressed) order.SetNonStopType(ONSF_NO_STOP_AT_ANY_STATION);
 		return order;
@@ -401,7 +400,7 @@ static Order GetOrderCmdFromTile(const Vehicle *v, TileIndex tile)
 
 		if (IsTileType(tile, MP_STATION)) st = Station::GetByTile(tile);
 
-		if (st != nullptr && (st->owner == _local_company || st->owner == OWNER_NONE)) {
+		if (st != nullptr) {
 			byte facil;
 			(facil = FACIL_DOCK, v->type == VEH_SHIP) ||
 			(facil = FACIL_TRAIN, v->type == VEH_TRAIN) ||

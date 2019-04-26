@@ -318,12 +318,13 @@ protected:
 			}
 		}
 
+		//TODO
 		/* rail transport is possible only on tiles with the same owner as vehicle */
-		if (IsRailTT() && GetTileOwner(m_new_tile) != m_veh_owner) {
+		//if (IsRailTT() && GetTileOwner(m_new_tile) != m_veh_owner) {
 			/* different owner */
-			m_err = EC_NO_WAY;
-			return false;
-		}
+			//m_err = EC_NO_WAY;
+			//return false;
+		//}
 
 		/* rail transport is possible only on compatible rail types */
 		if (IsRailTT()) {

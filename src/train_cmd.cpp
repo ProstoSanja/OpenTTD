@@ -2849,10 +2849,9 @@ static void TrainEnterStation(Train *v, StationID station)
 }
 
 /* Check if the vehicle is compatible with the specified tile */
-static inline bool CheckCompatibleRail(const Train *v, TileIndex tile)
+static inline bool CheckCompatibleRail(const Train *v, TileIndex tile) //TODO
 {
-	return IsTileOwner(tile, v->owner) &&
-			(!v->IsFrontEngine() || HasBit(v->compatible_railtypes, GetRailType(tile)));
+	return (!v->IsFrontEngine() || HasBit(v->compatible_railtypes, GetRailType(tile)));
 }
 
 /** Data structure for storing engine speed changes of an acceleration type. */
@@ -3004,7 +3003,7 @@ static Vehicle *FindTrainCollideEnum(Vehicle *v, void *data)
 	if (v->type != VEH_TRAIN || Train::From(v)->track == TRACK_BIT_DEPOT) return nullptr;
 
 	/* do not crash into trains of another company. */
-	if (v->owner != tcc->v->owner) return nullptr;
+	//if (v->owner != tcc->v->owner) return NULL;
 
 	/* get first vehicle now to make most usual checks faster */
 	Train *coll = Train::From(v)->First();
@@ -3032,6 +3031,9 @@ static Vehicle *FindTrainCollideEnum(Vehicle *v, void *data)
 	/* crash both trains */
 	tcc->num += TrainCrashed(tcc->v);
 	tcc->num += TrainCrashed(coll);
+
+	ModifyStationRatingAround(coll->tile, coll->owner, -80, 30);
+	ModifyStationRatingAround(tcc->v->tile, tcc->v->owner, -80, 30);
 
 	return nullptr; // continue searching
 }
@@ -3068,7 +3070,6 @@ static bool CheckTrainCollision(Train *v)
 	SetDParam(0, tcc.num);
 	AddTileNewsItem(STR_NEWS_TRAIN_CRASH, NT_ACCIDENT, v->tile);
 
-	ModifyStationRatingAround(v->tile, v->owner, -160, 30);
 	if (_settings_client.sound.disaster) SndPlayVehicleFx(SND_13_TRAIN_COLLISION, v);
 	return true;
 }

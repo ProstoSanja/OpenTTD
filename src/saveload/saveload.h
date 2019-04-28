@@ -292,6 +292,8 @@ enum SaveLoadVersion : uint16 {
 	SLV_SHIPS_STOP_IN_LOCKS,                ///< 206  PR#7150 Ship/lock movement changes.
 	SLV_FIX_CARGO_MONITOR,                  ///< 207  PR#7175 Cargo monitor data packing fix to support 64 cargotypes.
 
+	SLV_STATION_SHARE,                      ///< 207.5  Station share implementations.
+
 	SL_MAX_VERSION,                         ///< Highest possible saveload version
 };
 

@@ -720,6 +720,7 @@ bool AfterLoadGame()
 		_settings_game.vehicle.train_slope_steepness = 3;
 	}
 	if (IsSavegameVersionBefore(SLV_134))  _settings_game.economy.feeder_payment_share = 75;
+	if (IsSavegameVersionBefore(SLV_STATION_SHARE))  _settings_game.economy.station_share_tax = 20;
 	if (IsSavegameVersionBefore(SLV_138))  _settings_game.vehicle.plane_crashes = 2;
 	if (IsSavegameVersionBefore(SLV_139)) {
 		_settings_game.vehicle.roadveh_acceleration_model = 0;

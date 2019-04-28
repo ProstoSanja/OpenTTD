@@ -28,6 +28,7 @@ void UpdateLandscapingLimits();
 
 bool CheckCompanyHasMoney(CommandCost &cost);
 void SubtractMoneyFromCompany(CommandCost cost);
+void SubtractMoneyFromCompany(CompanyID company, CommandCost cost);
 void SubtractMoneyFromCompanyFract(CompanyID company, CommandCost cost);
 CommandCost CheckOwnership(Owner owner, TileIndex tile = 0);
 CommandCost CheckTileOwnership(TileIndex tile);

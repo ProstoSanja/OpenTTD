@@ -26,6 +26,7 @@ void UpdateLandscapingLimits();
 
 bool CheckCompanyHasMoney(CommandCost &cost);
 void SubtractMoneyFromCompany(const CommandCost& cost);
+void SubtractMoneyFromCompany(CompanyID company, const CommandCost& cost);
 void SubtractMoneyFromCompanyFract(CompanyID company, const CommandCost& cost);
 CommandCost CheckOwnership(Owner owner, TileIndex tile = 0);
 CommandCost CheckTileOwnership(TileIndex tile);

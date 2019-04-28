@@ -1181,8 +1181,20 @@ CargoPayment::~CargoPayment()
 
 	Backup<CompanyID> cur_company(_current_company, this->front->owner, FILE_LINE);
 
+	this->route_profit = visual_profit + visual_transfer;
+
 	SubtractMoneyFromCompany(CommandCost(this->front->GetExpenseType(true), -this->route_profit));
-	this->front->profit_this_year += (this->visual_profit + this->visual_transfer) << 8;
+	this->front->profit_this_year += this->route_profit << 8;
+
+	const OwnerByte st_owner = Station::Get(this->current_station)->owner;
+
+	if (this->route_profit > 0 && this->front->owner != st_owner) { //
+		Money tax = this->route_profit * _settings_game.economy.station_share_tax / 100;
+		SubtractMoneyFromCompany(CommandCost(EXPENSES_OTHER, tax));
+		SubtractMoneyFromCompany(st_owner, CommandCost(EXPENSES_OTHER, -tax));
+		ShowCostOrIncomeAnimation(this->front->x_pos, this->front->y_pos,
+				this->front->z_pos+10, tax);
+	}
 
 	if (this->route_profit != 0 && IsLocalCompany() && !PlayVehicleSound(this->front, VSE_LOAD_UNLOAD)) {
 		SndPlayVehicleFx(SND_14_CASHTILL, this->front);
@@ -1212,7 +1224,6 @@ void CargoPayment::PayFinalDelivery(const CargoPacket *cp, uint count)
 
 	/* Handle end of route payment */
 	Money profit = DeliverGoods(count, this->ct, this->current_station, cp->SourceStationXY(), cp->DaysInTransit(), this->owner, cp->SourceSubsidyType(), cp->SourceSubsidyID());
-	this->route_profit += profit;
 
 	/* The vehicle's profit is whatever route profit there is minus feeder shares. */
 	this->visual_profit += profit - cp->FeederShare(count);

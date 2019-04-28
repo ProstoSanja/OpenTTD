@@ -247,6 +247,17 @@ void SubtractMoneyFromCompany(const CommandCost &cost)
 }
 
 /**
+ * Subtract money from the any company, if the company is valid.
+ * @param company Company paying the bill.
+ * @param cost Money to pay.
+ */
+void SubtractMoneyFromCompany(CompanyID company, const CommandCost &cost)
+{
+	Company *c = Company::GetIfValid(company);
+	if (c != nullptr) SubtractMoneyFromAnyCompany(c, cost);
+}
+
+/**
  * Subtract money from a company, including the money fraction.
  * @param company Company paying the bill.
  * @param cst     Cost of a command.

@@ -1186,7 +1186,7 @@ CargoPayment::~CargoPayment()
 	SubtractMoneyFromCompany(CommandCost(this->front->GetExpenseType(true), -this->route_profit));
 	this->front->profit_this_year += this->route_profit << 8;
 
-	const OwnerByte st_owner = Station::Get(this->current_station)->owner;
+	const Owner st_owner = Station::Get(this->current_station)->owner;
 
 	if (this->route_profit > 0 && this->front->owner != st_owner) { //
 		Money tax = this->route_profit * _settings_game.economy.station_share_tax / 100;
